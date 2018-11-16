@@ -8,6 +8,8 @@ import hashlib
 import re
 
 hash_list = [
+  (0x0008,0x0080),
+  (0x0008,0x0081),
   (0x0008,0x1030),
   (0x0008,0x1070),
   (0x0010,0x0010),
@@ -16,16 +18,20 @@ hash_list = [
   (0x0040,0x0254)
 ]
 
-date_sub_list = [
+date_overwrite_list = [
+  (0x0010,0x0030),
   (0x0008,0x0012),
-  (0x0008,0x0018),
   (0x0008,0x0020),
   (0x0008,0x0021),
   (0x0008,0x0022),
   (0x0008,0x0023),
+  (0x0040,0x0244)
+]
+
+date_sub_list = [
+  (0x0008,0x0018),
   (0x0029,0x1009),
   (0x0029,0x1019),
-  (0x0040,0x0244),
   (0x0040,0x0253),
   (0x0020,0x000e),
   (0x0020,0x0052)
@@ -37,6 +43,8 @@ def dcm_anon(dcm_file):
         dcm[tag].value = hashlib.md5(dcm[tag].value.encode('utf-8')).hexdigest()
     date_to_replace = dcm[(0x0008,0x0012)].value
     date_to_replace_with = '19991231'
+    for tag in date_overwrite_list:
+        dcm[tag].value = '19991231'
     for tag in date_sub_list:
         dcm[tag].value = re.sub(date_to_replace, date_to_replace_with, dcm[tag].value)
     #  Recurse through subitems in (0x0008,0x1140) and replace datestring
