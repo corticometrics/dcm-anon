@@ -13,6 +13,7 @@ PatientID tag is anonymized with a one-to-one map so that autoregister queries w
 
 ## Usage
 
+`./dcm-anon in-dir out-dir`
 
 ## Anonimization procedure
 
