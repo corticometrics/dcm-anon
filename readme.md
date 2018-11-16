@@ -39,3 +39,5 @@ An arbitrary datestring, `19991231`, is generated and used to replace the datest
 - 0020,000e SeriesInstanceUID
 - 0020,0052 FrameOfReferenceUID
 - 0008,1140 ReferencedImageSequence
+
+If the filename contains the datesting, that is replaced with `19991231` in the output filename as well.

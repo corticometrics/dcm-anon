@@ -42,7 +42,8 @@ def dcm_anon(dcm_file):
     #  Recurse through subitems in (0x0008,0x1140) and replace datestring
     for el in dcm[(0x0008,0x1140)].value:
         el[(0x0008,0x1155)].value = re.sub(date_to_replace, date_to_replace_with, dcm[tag].value)
-    return dcm
+    suggested_out_file = re.sub(date_to_replace, date_to_replace_with, os.path.basename(dcm_file))
+    return dcm, suggested_out_file
 
 parser = argparse.ArgumentParser(description='Parse command line options')
 parser.add_argument('input_directory')
@@ -55,5 +56,5 @@ out_path = pathlib.Path(args.output_directory)
 out_path.mkdir(parents=True, exist_ok=True)
 
 for f in filelist:
-    dcm = dcm_anon(os.path.join(args.input_directory,f))
-    dcm.save_as(os.path.join(args.output_directory,f))
+    dcm, suggested_out_file = dcm_anon(os.path.join(args.input_directory,f))
+    dcm.save_as(os.path.join(args.output_directory,suggested_out_file))
