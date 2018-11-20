@@ -35,6 +35,7 @@ An arbitrary datestring, `19991231`, is generated. It is used to overwrite the d
 - 0008,0022 AcquisitionDate
 - 0008,0023 ContentDate
 - 0040,0244 PerformedProcedureStepStartDate
+- 0002,0003 MediaStorageSOPInstanceUID
 
 If the original InstanceCreationDate is found embedded in the following tags, it is also replaced with `19991231`.
 - 0008,0018 SOPInstanceUID

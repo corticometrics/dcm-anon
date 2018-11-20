@@ -47,10 +47,13 @@ def dcm_anon(dcm_file):
         dcm[tag].value = '19991231'
     for tag in date_sub_list:
         dcm[tag].value = re.sub(date_to_replace, date_to_replace_with, dcm[tag].value)
-    #  Recurse through subitems in (0x0008,0x1140) and replace datestring
+    # Recurse through subitems in (0x0008,0x1140) and replace datestring
     for el in dcm[(0x0008,0x1140)].value:
         el[(0x0008,0x1155)].value = re.sub(date_to_replace, date_to_replace_with, dcm[tag].value)
     suggested_out_file = re.sub(date_to_replace, date_to_replace_with, os.path.basename(dcm_file))
+    
+    # Also change tag (0x0002, 0x0003) which pydicom segragates into the 'file_meta' sturcture
+    dcm.file_meta[(0x0002, 0x0003)].value = re.sub(date_to_replace, date_to_replace_with, dcm.file_meta[(0x0002, 0x0003)].value)
     return dcm, suggested_out_file
 
 parser = argparse.ArgumentParser(description='Parse command line options')
