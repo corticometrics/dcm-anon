@@ -35,7 +35,6 @@ An arbitrary datestring, `19991231`, is generated. It is used to overwrite the d
 - 0008,0022 AcquisitionDate
 - 0008,0023 ContentDate
 - 0040,0244 PerformedProcedureStepStartDate
-- 0002,0003 MediaStorageSOPInstanceUID
 
 If the original InstanceCreationDate is found embedded in the following tags, it is also replaced with `19991231`.
 - 0008,0018 SOPInstanceUID
@@ -45,5 +44,6 @@ If the original InstanceCreationDate is found embedded in the following tags, it
 - 0020,000e SeriesInstanceUID
 - 0020,0052 FrameOfReferenceUID
 - 0008,1140 ReferencedImageSequence
+- 0002,0003 MediaStorageSOPInstanceUID
 
 If the filename contains the datesting, that is replaced with `19991231` in the output filename as well.
