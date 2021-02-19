@@ -1,5 +1,7 @@
 # dcm-anon
 
+### WORK IN PROGRESS
+
 Custom Dicom anonymizer that plays nicely with:
 - FreeSurfer
 - thinq/rethinq
@@ -10,6 +12,8 @@ Tags required for FreeSurfer recons (scanner manufacturer, etc) are left untouch
 Tags required for thinq/rethinq recons (age, sex, scanner manufactuer, feild stregth) are left untouched.
 
 PatientID tag is anonymized with a one-to-one map so that autoregister queries will work
+
+Can be used with [corticometrics/cstore-relay](https://github.com/corticometrics/cstore-relay) to anonymize DICOMS "in transit"
 
 ## Usage
 
@@ -47,3 +51,9 @@ If the original InstanceCreationDate is found embedded in the following tags, it
 - 0002,0003 MediaStorageSOPInstanceUID
 
 If the filename contains the datesting, that is replaced with `19991231` in the output filename as well.
+
+## Acknowledgments
+
+This work has been partially funded by the following NIH grants:
+- R42CA183150
+- R42AG062026
